@@ -2,7 +2,7 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import { Task } from "./interfaces";
+import { Task } from "../../interfaces";
 
 interface TaskItemProps {
   taskNumber: number;

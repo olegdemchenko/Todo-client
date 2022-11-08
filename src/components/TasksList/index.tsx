@@ -1,7 +1,7 @@
 import React from "react";
 import Row from "react-bootstrap/Row";
-import { Task } from "./interfaces";
-import TaskItem from "./TaskItem";
+import { Task } from "../../interfaces";
+import TaskItem from "../TaskItem";
 
 interface TasksListProps {
   tasks: Task[];
