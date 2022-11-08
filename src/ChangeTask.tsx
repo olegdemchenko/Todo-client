@@ -6,6 +6,7 @@ import Header from "./Header";
 import GoBack from "./GoBack";
 import DescriptionInput from "./DescriptionInput";
 import { Task } from "./interfaces";
+import { routes } from "./routes";
 
 const initialState = {
   task: null,
@@ -41,7 +42,7 @@ function ChangeTask() {
   const [state, dispatch] = useReducer(reducer, initialState);
   useEffect(() => {
     async function fetchTask() {
-      const resp = await fetch(`http://127.0.0.1:5000/${id}`);
+      const resp = await fetch(routes.task(id as string));
       if (resp.ok) {
         const task = await resp.json();
         dispatch({ type: "TASKS/FETCHED", payload: task });
@@ -55,7 +56,7 @@ function ChangeTask() {
   const navigate = useNavigate();
 
   async function handleChangeTask(description: string) {
-    const resp = await fetch(`http://127.0.0.1:5000/${id}`, {
+    const resp = await fetch(routes.task(id as string), {
       headers: { "Content-Type": "application/json" },
       method: "PATCH",
       body: JSON.stringify({ id, description, active: state.task?.active }),

@@ -6,6 +6,7 @@ import { Task } from "./interfaces";
 import DescriptionInput from "./DescriptionInput";
 import Header from "./Header";
 import TasksList from "./TasksList";
+import { routes } from "./routes";
 
 const initialState = {
   tasks: [],
@@ -71,7 +72,7 @@ function Root() {
       if (state.error) {
         return;
       }
-      const resp = await fetch("http://127.0.0.1:5000");
+      const resp = await fetch(routes.tasks());
       if (resp.ok) {
         const tasks = await resp.json();
         dispatch({ type: "TASKS/ALLFETCHED", payload: tasks });
@@ -89,7 +90,7 @@ function Root() {
   }
 
   async function handleDelete(id: string) {
-    const resp = await fetch(`http://127.0.0.1:5000/${id}`, {
+    const resp = await fetch(routes.task(id), {
       method: "DELETE",
     });
     if (resp.ok) {
@@ -101,7 +102,7 @@ function Root() {
   }
 
   async function handleAdd(description: string) {
-    const resp = await fetch("http://127.0.0.1:5000", {
+    const resp = await fetch(routes.tasks(), {
       headers: { "Content-Type": "application/json" },
       method: "POST",
       body: JSON.stringify({ description, active: true }),
@@ -115,7 +116,7 @@ function Root() {
   }
 
   async function handleStatusChange(task: Task) {
-    const resp = await fetch(`http://127.0.0.1:5000/${task.id}`, {
+    const resp = await fetch(routes.task(task.id), {
       headers: { "Content-Type": "application/json" },
       method: "PATCH",
       body: JSON.stringify({ ...task, active: !task.active }),
