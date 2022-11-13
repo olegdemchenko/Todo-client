@@ -40,7 +40,7 @@ function reducer(
     case "TASKS/STATUSCHANGED": {
       return {
         tasks: state.tasks.map((task) =>
-          task.id === action.payload.id ? action.payload : task
+          task._id === action.payload._id ? action.payload : task
         ),
         error: null,
       };

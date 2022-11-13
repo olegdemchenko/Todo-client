@@ -24,7 +24,7 @@ function TasksList({
           .filter(({ active }) => active)
           .map((task, index) => (
             <TaskItem
-              key={task.id}
+              key={task._id}
               taskNumber={index + 1}
               task={task}
               changeClb={changeClb}
@@ -39,7 +39,7 @@ function TasksList({
           .filter(({ active }) => !active)
           .map((task, index) => (
             <TaskItem
-              key={task.id}
+              key={task._id}
               taskNumber={index + 1}
               task={task}
               changeClb={changeClb}

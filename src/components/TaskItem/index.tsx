@@ -19,8 +19,8 @@ function TaskItem({
   deleteClb,
   activateClb,
 }: TaskItemProps) {
-  const handleChange = () => changeClb(task.id);
-  const handleDelete = () => deleteClb(task.id);
+  const handleChange = () => changeClb(task._id);
+  const handleDelete = () => deleteClb(task._id);
   const handleActivate = () => activateClb(task);
 
   return (

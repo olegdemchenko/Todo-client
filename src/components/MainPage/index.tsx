@@ -60,7 +60,7 @@ function MainPage() {
   }
 
   async function handleStatusChange(task: Task) {
-    const resp = await fetch(routes.task(task.id), {
+    const resp = await fetch(routes.tasks(), {
       headers: { "Content-Type": "application/json" },
       method: "PATCH",
       body: JSON.stringify({ ...task, active: !task.active }),

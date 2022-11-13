@@ -27,10 +27,14 @@ function ChangeTask() {
   const navigate = useNavigate();
 
   async function handleChangeTask(description: string) {
-    const resp = await fetch(routes.task(id as string), {
+    const resp = await fetch(routes.tasks(), {
       headers: { "Content-Type": "application/json" },
       method: "PATCH",
-      body: JSON.stringify({ id, description, active: state.task?.active }),
+      body: JSON.stringify({
+        _id: id,
+        description,
+        active: state.task?.active,
+      }),
     });
     if (resp.ok) {
       navigate("/");
@@ -53,7 +57,7 @@ function ChangeTask() {
       <Header />
       <GoBack />
       <DescriptionInput
-        key={state.task?.id}
+        key={state.task?._id}
         initDescription={state.task?.description}
         handleAddTask={handleChangeTask}
       />
